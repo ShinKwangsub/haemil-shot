@@ -845,7 +845,7 @@ def gate_cases():
            "" if ok else "셸이 screencapture 결과를 C.Cap.verdict 없이 직접 판정합니다")
     shipped = ["shot.bend", "core.bend", "app/main.swift", "build.sh", "dist/build.sh", "dist/release.sh"]
     bad = [f for f in shipped if "/Users/" in open(os.path.join(shot_dir, f), encoding="utf-8").read()]
-    report("배포되는 소스에 /Users/ 고정 경로 없음 (번들 경로는 Bundle.main, 캐시는 HOME 에서)", not bad, ", ".join(bad))
+    report("배포되는 소스에 사용자 폴더 고정 경로 없음 (번들 경로는 Bundle.main, 캐시는 HOME 에서)", not bad, ", ".join(bad))
     m = re.search(r"^def Ell.tab\(\) -> List<&2, U32>:\n  \[\n((?:   .*\n)+)  \]", shell, re.M)
     tab = [int(v) for v in re.findall(r"\d+", m.group(1))] if m else None
     report("shot.bend 의 원 256각형 표 = 기준 구현의 표", tab == ell_table(), "%s개" % (len(tab) if tab else None))
